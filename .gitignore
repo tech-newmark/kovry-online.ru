@@ -10,7 +10,7 @@ lerna-debug.log*
 /bitrix/ 
 /upload/
 /cache/
-.access.php 
+.access.php
 
 *.local
 
