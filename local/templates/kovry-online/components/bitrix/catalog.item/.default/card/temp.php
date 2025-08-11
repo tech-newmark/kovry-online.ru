@@ -6,8 +6,6 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 
 ?>
 CATALOG_ITEM/CARD/TEMPLATE.PHP
-
-
 <div class="nm-product-item">
 	<div class="nm-product-item__header">
 		<? if (!empty($arResult["ITEM"]["PROPERTIES"]["HIT"]["VALUE"])): ?>
@@ -15,32 +13,13 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 				<?= $arResult["ITEM"]["NM_LABELS"] ?>
 			</div>
 		<? endif; ?>
-
-		<? if ($arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] && empty($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"])): ?>
-			<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
-		<? else: ?>
-			<div class="swiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
-					</div>
-					<? foreach ($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $picture):
-						$picturePath = CFile::GetPath($picture);
-					?>
-						<div class="swiper-slide">
-							<img src="<?= $picturePath ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
-						</div>
-					<? endforeach; ?>
-				</div>
-			</div>
-		<? endif; ?>
-
+		<p>картинки/слайдер</p>
 		<p>кнопки быстрого заказа и подробного просмотра</p>
 	</div>
 	<div class="nm-product-item__body">
 		<a href="<?= $arResult["ITEM"]["DETAIL_PAGE_URL"] ?>"><?= $arResult["ITEM"]["NAME"] ?></a>
 
-		<? if ($actualItem['CAN_BUY']): ?>
+		<? if ($arResult["ITEM"]["PROPERTIES"]["IN_STOCK"]["VALUE"] === "Y"): ?>
 			<span>В наличии</span>
 		<? else: ?>
 			<span>Нет в наличии</span>
@@ -243,7 +222,11 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 											);
 										}
 										?>
-
+										<a class="btn btn-link <?= $buttonSizeClass ?>"
+											id="<?= $itemIds['NOT_AVAILABLE_MESS'] ?>" href="javascript:void(0)" rel="nofollow"
+											<?= ($actualItem['CAN_BUY'] ? 'style="display: none;"' : '') ?>>
+											<?= $arParams['MESS_NOT_AVAILABLE'] ?>
+										</a>
 										<div id="<?= $itemIds['BASKET_ACTIONS'] ?>" <?= ($actualItem['CAN_BUY'] ? '' : 'style="display: none;"') ?>>
 											<a class="btn btn-default <?= $buttonSizeClass ?>" id="<?= $itemIds['BUY_LINK'] ?>"
 												href="javascript:void(0)" rel="nofollow">
