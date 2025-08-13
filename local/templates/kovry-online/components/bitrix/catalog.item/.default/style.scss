@@ -1,27 +1,48 @@
 .nm-product-item {
-	// background-color: blue;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	// outline: 1px solid red;
+	height: auto;
+	border: 1px solid var(--gray-600);
 
 	&__header {
-		min-height: 300px;
-		border: 1px solid var(--danger);
+		position: relative;
+		padding: 4px 8px;
+		// outline: 1px solid red;
+		//
+		// min-height: 300px;
+		// border: 1px solid var(--danger);
 	}
 
 	&__body {
-		min-height: 300px;
-		border: 1px solid #f4f4f4;
+		// min-height: 300px;
+		// border: 1px solid #f4f4f4;
+		padding: 4px 20px;
 	}
 
 	&__footer {
-		min-height: 300px;
-		border: 1px solid #f4f4f4;
+		// min-height: 300px;
+		// border: 1px solid #f4f4f4;
 	}
 }
 
+.nm-product-item__title {
+	font-size: 16px;
+	font-weight: 400;
+	color: var(--dark);
+}
+
+// header labels
 .nm-product-item__labels {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+
 	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
+	flex-direction: column;
 	gap: 6px;
+	z-index: 11;
 }
 
 .nm-product__label {
@@ -52,6 +73,79 @@
 	&--stock {
 		background-color: var(--warning);
 		color: var(--dark);
+	}
+}
+
+// header gallery
+.nm-product-item__gallery {
+	// background-color: var(--light);
+	img {
+		object-fit: contain;
+		object-position: center;
+		width: 100%;
+	}
+}
+
+// header action block
+.nm-product-item__action-block {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	z-index: 11;
+}
+
+// price-block
+
+.nm-product-item__price {
+	line-height: 1;
+	height: fit-content;
+	// outline: 1px solid red;
+	&--old {
+		font-size: 16px;
+		font-weight: 400;
+		color: var(--gray-800);
+		text-decoration: line-through;
+	}
+
+	&--current {
+		font-size: 20px;
+		font-weight: 500;
+	}
+
+	&-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 6px 10px;
+		margin: 12px 0;
+	}
+
+	&-label {
+		&-wrapper {
+			width: 100%;
+		}
+
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		width: fit-content;
+		padding: 2px;
+		padding-left: 12px;
+
+		border-radius: 3px;
+		background-color: var(--warning);
+
+		span:last-child {
+			display: flex;
+			align-items: center;
+			min-height: 28px;
+			padding: 4px;
+			border-radius: 3px;
+			background-color: var(--info);
+		}
 	}
 }
 

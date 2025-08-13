@@ -107,6 +107,7 @@ if (isset($arResult['ITEM'])) {
 	$itemHasDetailUrl = isset($item['DETAIL_PAGE_URL']) && $item['DETAIL_PAGE_URL'] != '';
 ?>
 
+
 	<div class="product-item-container<?= (isset($arResult['SCALABLE']) && $arResult['SCALABLE'] === 'Y' ? ' product-item-scalable-card' : '') ?>"
 		id="<?= $areaId ?>" data-entity="item">
 		<?php
@@ -296,6 +297,7 @@ if (isset($arResult['ITEM'])) {
 			var <?= $obName ?> = new JCCatalogItem(<?= CUtil::PhpToJSObject($jsParams, false, true) ?>);
 		</script>
 	</div>
+
 <?php
 	unset($item, $actualItem, $minOffer, $itemIds, $jsParams);
 }

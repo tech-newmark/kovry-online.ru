@@ -664,7 +664,7 @@
 					if (this.obCompare) {
 						BX.bind(this.obCompare, "click", BX.proxy(this.compare, this));
 					}
-
+					console.log("test");
 					BX.addCustomEvent(
 						"onCatalogDeleteCompare",
 						BX.proxy(this.checkDeletedCompare, this),

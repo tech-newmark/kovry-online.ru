@@ -16,82 +16,81 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 			</div>
 		<? endif; ?>
 
-		<? if ($arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] && empty($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"])): ?>
-			<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
-		<? else: ?>
-			<div class="swiper">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
-					</div>
-					<? foreach ($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $picture):
-						$picturePath = CFile::GetPath($picture);
-					?>
+		<div class="nm-product-item__gallery">
+			<? if ($arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] && empty($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"])): ?>
+				<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+			<? else: ?>
+				<div class="swiper main-slider">
+					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<img src="<?= $picturePath ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+							<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
 						</div>
-					<? endforeach; ?>
+						<? foreach ($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $picture):
+							$picturePath = CFile::GetPath($picture);
+						?>
+							<div class="swiper-slide">
+								<img src="<?= $picturePath ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+							</div>
+						<? endforeach; ?>
+					</div>
 				</div>
+			<? endif; ?>
+		</div>
+
+		<div class="nm-product-item__action-block">
+			<button type="button">Быстрый просмотр</button>
+			<button type="button">Купить в один клик</button>
+		</div>
+	</div>
+
+	<div class="nm-product-item__body">
+		<a href="<?= $arResult["ITEM"]["DETAIL_PAGE_URL"] ?>" class="nm-product-item__title">
+			<?= $arResult["ITEM"]["NAME"] ?>
+		</a>
+
+		<? if (!empty($price)): ?>
+			<div class="nm-product-item__price-wrapper" data-entity="price-block">
+				<? if ($arParams['SHOW_OLD_PRICE'] === 'Y' && !empty($price) && $price['RATIO_BASE_PRICE'] > $price['RATIO_PRICE']): ?>
+					<div class="nm-product-item__price-label-wrapper">
+						<div class="nm-product-item__price-label">
+							<span>-<?= $price["PERCENT"] ?>%</span>
+							<span><?= $price["PRINT_DISCOUNT"] ?> Экономия</span>
+						</div>
+					</div>
+					<span class="nm-product-item__price nm-product-item__price--old" id="<?= $itemIds['PRICE_OLD'] ?>">
+						<?= $price['PRINT_RATIO_BASE_PRICE'] ?>
+					</span>
+				<? endif; ?>
+
+				<span class="nm-product-item__price nm-product-item__price--current" id="<?= $itemIds['PRICE'] ?>">
+					<? if ($arParams['PRODUCT_DISPLAY_MODE'] === 'N' && $haveOffers) {
+						echo Loc::getMessage(
+							'CT_BCI_TPL_MESS_PRICE_SIMPLE_MODE',
+							array(
+								'#PRICE#' => $price['PRINT_RATIO_PRICE'],
+								'#VALUE#' => $measureRatio,
+								'#UNIT#' => $minOffer['ITEM_MEASURE']['TITLE']
+							)
+						);
+					} else {
+						echo $price['PRINT_RATIO_PRICE'];
+					} ?>
+				</span>
 			</div>
 		<? endif; ?>
 
-		<p>кнопки быстрого заказа и подробного просмотра</p>
-	</div>
-	<div class="nm-product-item__body">
-		<a href="<?= $arResult["ITEM"]["DETAIL_PAGE_URL"] ?>"><?= $arResult["ITEM"]["NAME"] ?></a>
-
-		<? if ($actualItem['CAN_BUY']): ?>
-			<span>В наличии</span>
-		<? else: ?>
-			<span>Нет в наличии</span>
-		<? endif; ?>
-
-		<p>скидка и экономия</p>
-		<p>цена/старая цена</p>
 		<p>торговое предложение(размер ковра текущего)</p>
+		<!-- <? debug($item) ?> -->
 
 		<? if (!empty($arParams['PRODUCT_BLOCKS_ORDER'])) {
 			foreach ($arParams['PRODUCT_BLOCKS_ORDER'] as $blockName) {
 				switch ($blockName) {
-					case 'price': ?>
-						<div class="product-item-info-container product-item-price-container" data-entity="price-block">
-							<?
-							if ($arParams['SHOW_OLD_PRICE'] === 'Y' && !empty($price)) {
-							?>
-								<span class="product-item-price-old" id="<?= $itemIds['PRICE_OLD'] ?>"
-									<?= ($price['RATIO_PRICE'] >= $price['RATIO_BASE_PRICE'] ? 'style="display: none;"' : '') ?>>
-									<?= $price['PRINT_RATIO_BASE_PRICE'] ?>
-								</span>&nbsp;
-							<?
-							}
-							?>
-							<span class="product-item-price-current" id="<?= $itemIds['PRICE'] ?>">
-								<?
-								if (!empty($price)) {
-									if ($arParams['PRODUCT_DISPLAY_MODE'] === 'N' && $haveOffers) {
-										echo Loc::getMessage(
-											'CT_BCI_TPL_MESS_PRICE_SIMPLE_MODE',
-											array(
-												'#PRICE#' => $price['PRINT_RATIO_PRICE'],
-												'#VALUE#' => $measureRatio,
-												'#UNIT#' => $minOffer['ITEM_MEASURE']['TITLE']
-											)
-										);
-									} else {
-										echo $price['PRINT_RATIO_PRICE'];
-									}
-								}
-								?>
-							</span>
-						</div>
-						<?
-						break;
-
 					case 'quantityLimit':
 						if ($arParams['SHOW_MAX_QUANTITY'] !== 'N') {
 							if ($haveOffers) {
 								if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y') {
-						?>
+		?>
+									quantity limit
 									<div class="product-item-info-container product-item-hidden" id="<?= $itemIds['QUANTITY_LIMIT'] ?>"
 										style="display: none;" data-entity="quantity-limit-block">
 										<div class="product-item-info-container-title">
@@ -138,6 +137,7 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 						if (!$haveOffers) {
 							if ($actualItem['CAN_BUY'] && $arParams['USE_PRODUCT_QUANTITY']) {
 								?>
+								quantity
 								<div class="product-item-info-container product-item-hidden" data-entity="quantity-block">
 									<div class="product-item-amount">
 										<div class="product-item-amount-field-container">
@@ -183,6 +183,7 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 
 					case 'buttons':
 						?>
+						buttons
 						<div class="product-item-info-container product-item-hidden" data-entity="buttons-block">
 							<?
 							if (!$haveOffers) {
@@ -269,8 +270,10 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 
 					case 'props':
 						if (!$haveOffers) {
+
 							if (!empty($item['DISPLAY_PROPERTIES'])) {
 						?>
+								PROPS
 								<div class="product-item-info-container product-item-hidden" data-entity="props-block">
 									<dl class="product-item-properties">
 										<?
@@ -364,8 +367,11 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 							$showProductProps = !empty($item['DISPLAY_PROPERTIES']);
 							$showOfferProps = $arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $item['OFFERS_PROPS_DISPLAY'];
 
+
 							if ($showProductProps || $showOfferProps) {
+								debug($item['DISPLAY_PROPERTIES']);
 							?>
+								props2
 								<div class="product-item-info-container product-item-hidden" data-entity="props-block">
 									<dl class="product-item-properties">
 										<?
@@ -401,6 +407,7 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 					case 'sku':
 						if ($arParams['PRODUCT_DISPLAY_MODE'] === 'Y' && $haveOffers && !empty($item['OFFERS_PROP'])) {
 							?>
+							sku
 							<div id="<?= $itemIds['PROP_DIV'] ?>">
 								<?
 								foreach ($arParams['SKU_PROPS'] as $skuProperty) {

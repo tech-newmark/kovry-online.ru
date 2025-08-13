@@ -10,6 +10,9 @@
 
 	<!-- <link rel="stylesheet" type="text/css" href="<?= SITE_TEMPLATE_PATH ?>/common.css" /> -->
 	<? $APPLICATION->ShowHead(); ?>
+	<? $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH . "/assets/vendors/swiper/styles.css", true); ?>
+	<? $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH . "/assets/vendors/swiper/script.js"); ?>
+	<? $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH . "/assets/script.js"); ?>
 </head>
 
 <body>
