@@ -1462,9 +1462,10 @@
 						for (i = 0; i < rowItems.length; i++) {
 							value = rowItems[i].getAttribute("data-onevalue");
 							if (value === arTreeItem[1]) {
-								BX.addClass(rowItems[i], "selected");
+								BX.addClass(rowItems[i], "selected еуые");
+								console.log(rowItems[i]);
 							} else {
-								BX.removeClass(rowItems[i], "selected");
+								BX.removeClass(rowItems[i], "selected еуые2");
 							}
 						}
 					}
