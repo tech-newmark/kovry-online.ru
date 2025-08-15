@@ -38,8 +38,8 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 			</div>
 
 			<div class="item__action-block">
-				<button type="button" aria-label="Быстрый просмотр" class=" item__action-btn quickview-btn"></button>
-				<button type="button" aria-label="Купить в один клик" class="item__action-btn oneclickbuy-btn"></button>
+				<button type="button" aria-label="Быстрый просмотр" class=" item__action-btn item__action-btn--quickview"></button>
+				<button type="button" aria-label="Купить в один клик" class="item__action-btn item__action-btn--oneclickbuy"></button>
 			</div>
 		</div>
 
@@ -105,13 +105,13 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 
 				<div class="item__quantity-block" data-entity="quantity-block">
 					<div class="item__counter">
-						<button class="item__quantity-btn item__quantity-btn--minus" id="<?= $itemIds['QUANTITY_DOWN'] ?>">-</button>
-						<input class="item__quantity-field" id="<?= $itemIds['QUANTITY'] ?>" type="number" min-number="0"
+						<button class="item__quantity-btn item__quantity-btn--minus" aria-label="Убрать единицу товара" id="<?= $itemIds['QUANTITY_DOWN'] ?>">-</button>
+						<input class="item__quantity-field" id="<?= $itemIds['QUANTITY'] ?>" type="number"
 							name="<?= $arParams['PRODUCT_QUANTITY_VARIABLE'] ?>"
 							value="<?= $measureRatio ?>">
-						<button class="item__quantity-btn item__quantity-btn--plus" id="<?= $itemIds['QUANTITY_UP'] ?>">+</button>
+						<button class="item__quantity-btn item__quantity-btn--plus" aria-label="Добавить единицу товара" id="<?= $itemIds['QUANTITY_UP'] ?>">+</button>
 					</div>
-					<button class="main-btn add-to-cart-btn" id="<?= $itemIds['BUY_LINK'] ?>">
+					<button class="main-btn add-to-cart-btn" aria-label="Добавить товар в корзину" id="<?= $itemIds['BUY_LINK'] ?>">
 						В корзину
 					</button>
 
