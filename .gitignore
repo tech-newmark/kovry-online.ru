@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -24,4 +25,33 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+=======
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log* 
+
+/bitrix/  
+/upload/
+/cache/
+/node_modules/
+.access.php
+
+# *.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+>>>>>>> yb-local
 *.tgz
