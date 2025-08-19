@@ -3,6 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Техническая страница для разработки");
 ?>
 
+<h1>Техническая страница для разработки</h1>
 <? $APPLICATION->IncludeComponent(
 	"bitrix:catalog",
 	".default",
