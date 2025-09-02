@@ -9,7 +9,8 @@ export default defineConfig({
 				template: "local/templates/kovry-online/template_styles.scss",
 				catalogItem:
 					"local/templates/kovry-online/components/bitrix/catalog.item/.default/style.scss",
-				// news: 'local/components/bitrix/news.list/templates/.default/scss/style.scss',
+				featuresList:
+					"local/templates/kovry-online/components/bitrix/news.list/features/style.scss",
 				// Добавьте другие компоненты при необходимости
 
 				script: "source/js/main.js",
@@ -33,6 +34,9 @@ export default defineConfig({
 					if (fileName.match(/\.(css)$/i)) {
 						if (fileName.includes("catalogItem")) {
 							return "local/templates/kovry-online/components/bitrix/catalog.item/.default/style.css";
+						}
+						if (fileName.includes("featuresList")) {
+							return "local/templates/kovry-online/components/bitrix/news.list/features/style.css";
 						}
 						return "local/templates/kovry-online/template_styles.css";
 					}
