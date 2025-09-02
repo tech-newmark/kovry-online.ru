@@ -7,7 +7,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) {
 ?>
 CATALOG_ITEM/CARD/TEMPLATE.PHP
 
-<div class="item">
+<div class="item item--card">
 	<div class="item__header">
 		<? if (!empty($arResult["ITEM"]["PROPERTIES"]["HIT"]["VALUE"])): ?>
 			<div class="item__labels">
@@ -36,7 +36,7 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 			<? endif; ?>
 		</div>
 
-		<div class="item__action-block">
+		<div class="item__action item__action--card">
 			<button type="button" aria-label="Быстрый просмотр" class=" item__action-btn item__action-btn--quickview"></button>
 			<button type="button" aria-label="Купить в один клик" class="item__action-btn item__action-btn--oneclickbuy"></button>
 		</div>

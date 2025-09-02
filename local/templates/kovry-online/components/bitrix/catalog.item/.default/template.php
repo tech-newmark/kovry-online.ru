@@ -112,7 +112,8 @@ if (isset($arResult['ITEM'])) {
 		id="<?= $areaId ?>" data-entity="item">
 		<?php
 		$documentRoot = Main\Application::getDocumentRoot();
-		$templatePath = mb_strtolower($arResult['TYPE']) . '/template.php';
+		// $templatePath = mb_strtolower($arResult['TYPE']) . '/template.php';
+		$templatePath = 'line/template.php';
 		$file = new Main\IO\File($documentRoot . $templateFolder . '/' . $templatePath);
 		if ($file->isExists()) {
 			include($file->getPath());

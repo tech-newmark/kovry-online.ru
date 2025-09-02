@@ -40,7 +40,48 @@ if ($haveOffers) {
 	$showSkuBlock = false;
 }
 ?>
+
 CATALOG_ITEM/LINE/TEMPLATE.PHP
+<div class="item item--line">
+	<div class="item__left-column" >
+		<? if (!empty($arResult["ITEM"]["PROPERTIES"]["HIT"]["VALUE"])): ?>
+			<div class="item__labels item__labels--line">
+				<?= $arResult["ITEM"]["NM_LABELS"] ?>
+			</div>
+		<? endif; ?>
+
+		<div class="item__gallery item__gallery--line">
+			<? if ($arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] && empty($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"])): ?>
+				<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+			<? else: ?>
+				<div class="swiper main-slider">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+						</div>
+						<? foreach ($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $picture):
+							$picturePath = CFile::GetPath($picture);
+						?>
+							<div class="swiper-slide">
+								<img src="<?= $picturePath ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+							</div>
+						<? endforeach; ?>
+					</div>
+				</div>
+			<? endif; ?>
+		</div>
+
+		<div class="item__action item__action--line">
+			<button type="button" aria-label="Быстрый просмотр" class="item__action-btn item__action-btn--line item__action-btn--quickview">
+				<span  class="item__action-btn-text item__action-btn-text--quickview">Быстрый просмотр</span>
+			</button>
+			<button type="button" class="item__action-btn item__action-btn--line item__action-btn--oneclickbuy">
+					<span class="item__action-btn-text item__action-btn-text--oneclickbuy">Купить в один клик</span>
+			</button>
+		</div>
+	</div>
+</div>
+
 <div class="row product-item">
 	<div class="col-xs-12">
 		<div class="product-item-title">
