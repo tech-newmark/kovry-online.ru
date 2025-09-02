@@ -30,29 +30,52 @@
 					</button>
 				</div>
 				<div class="cart-block">
-					<a href="/cart/">
+					<a href="/cart/" class="cart-block__link">
 						<img src="/images/cart-icon.svg" alt="В корзину" width="40" height="40">
 					</a>
 				</div>
-				<div class="phones">
-					<a href="#">
+				<div class="header__contacts">
+					<div class="phone-link">
 						<img src="/images/phone-icon.svg" alt="" width="40" height="40">
-						<span>8-800-999-99-99</span>
-					</a>
-					<a href="#">
+						<a href="#">8-800-999-99-99</a>
+					</div>
+					<div class="phone-link">
 						<img src="/images/phone-icon.svg" alt="" width="40" height="40">
-						<span>8-800-999-99-99</span>
-					</a>
+						<a href="#">8-800-999-99-99</a>
+					</div>
 				</div>
 
-				<button class="main-btn header__offer">
+				<button class="main-btn offer-btn">
 					Заказать звонок
 				</button>
 			</div>
 			<div class="header__bottom">
-				<nav>
-					<ul class="main-nav">
-						<li>Каталог</li>
+				<nav class="main-nav">
+					<ul class="main-nav__list">
+						<li class="main-nav__list-item">
+							<a href="/catalog/" class="catalog-opener">
+								<div class="burger">
+									<div class="burger-line burger-line--top"></div>
+									<div class="burger-line burger-line--middle"></div>
+									<div class="burger-line burger-line--bottom"></div>
+								</div>
+								Каталог
+							</a>
+						</li>
+						<li class="main-nav__list-item">
+							<a href="/sale/">
+								<img src="/images/sale-icon.svg" alt="" width="24" height="24">
+								Акции</a>
+						</li>
+						<li class="main-nav__list-item">
+							<a href="/info/">Как купить</a>
+						</li>
+						<li class="main-nav__list-item">
+							<a href="/company/">Компания</a>
+						</li>
+						<li class="main-nav__list-item">
+							<a href="/contacts/">Контакты</a>
+						</li>
 
 					</ul>
 				</nav>

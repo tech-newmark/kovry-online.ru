@@ -1,5 +1,8 @@
+@use "@scss-root/extends";
+
 .main-logo {
 	display: flex;
+	@extend %hover-opacity;
 
 	img {
 		width: 100%;

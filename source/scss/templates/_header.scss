@@ -1,53 +1,36 @@
+@use "@scss-root/extends";
 .header {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
 	padding: 10px;
+	.container {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
 
 	&__top {
 		display: flex;
 		align-items: center;
-		gap: 24px;
+		gap: 40px;
 	}
 
-	&__offer {
-		font-size: 18px;
-		font-weight: 600;
-		padding: 16px 24px;
-		min-height: 60px;
+	&__contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.offer-btn {
 		margin-left: auto;
 	}
 }
 
-.phones {
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
-
-	a {
-		display: flex;
-		align-items: center;
-		gap: 4px;
-		font-size: 16px;
-		font-weight: 600;
-		text-decoration: none;
-		color: var(--dark);
-
-		img {
-			width: 24px;
-			height: 24px;
-			object-fit: contain;
-		}
-	}
-}
-
+// вынести в компонент поиска
 .search-title {
 	position: relative;
 	display: flex;
 	align-items: center;
 	flex-grow: 1;
 	height: 60px;
-	// outline: 1px solid red;
 	border: 1px solid var(--gray-600);
 	border-radius: 3px;
 	overflow: hidden;
@@ -62,7 +45,7 @@
 		outline: none;
 		background-color: transparent;
 		color: var(--dark);
-		font-style: 18px;
+		font-size: 18px;
 
 		&::placeholder {
 			font-size: 18px;
@@ -87,5 +70,24 @@
 		background-color: transparent;
 		border: none;
 		padding: 16px;
+		@extend %hover-opacity;
+
+		img {
+			width: 100%;
+			height: auto;
+			object-fit: contain;
+		}
+	}
+}
+
+// вынести в компонент корзины
+.cart-block {
+	&__link {
+		@extend %hover-opacity;
+
+		img {
+			width: 40px;
+			height: 40px;
+		}
 	}
 }

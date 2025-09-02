@@ -1,0 +1,22 @@
+@use "@scss-root/extends";
+
+.phone-link {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+
+	@extend %hover-opacity;
+	img {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+	}
+
+	a {
+		display: flex;
+		font-size: 16px;
+		font-weight: 600;
+		text-decoration: none;
+		color: var(--dark);
+	}
+}
