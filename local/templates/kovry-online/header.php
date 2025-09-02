@@ -13,13 +13,41 @@
 	<title><? $APPLICATION->ShowTitle() ?></title>
 	<? $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH . "/assets/vendors/swiper/styles.css", true); ?>
 	<? $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH . "/assets/main.js"); ?>
-	<? $APPLICATION->AddHeadString('<meta name="test" content="битрикс работает">'); ?>
 </head>
 
 <body>
 	<div id="panel"><? $APPLICATION->ShowPanel(); ?></div>
-	<header>
-		<p>header</p>
+	<header class="header">
+		<div class="container">
+			<div class="header__top">
+				<a href="/" aria-label="kovry-online.ru" class="main-logo main-logo--header">
+					<img src="/images/main-logo.png" width="300" height="120" alt="Логотип">
+				</a>
+				<div class="">
+					search-title
+				</div>
+				<div class="cart-block">
+					<a href="/cart/">
+						<img src="/images/cart-icon.svg" alt="В корзину" width="40" height="40">
+					</a>
+				</div>
+				<div class="phones">
+					phones
+				</div>
+				<div class="">
+					button
+				</div>
+			</div>
+			<div class="header__bottom">
+				<nav>
+					<ul class="main-nav">
+						<li>Каталог</li>
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+
 	</header>
 	<main class="workarea">
 		<h1>workarea</h1>

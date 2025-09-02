@@ -50,6 +50,7 @@ export default defineConfig({
 		alias: {
 			"@scss-root": path.resolve(__dirname, "source/scss"),
 			"@scss-components": path.resolve(__dirname, "source/scss/components"),
+			"@scss-templates": path.resolve(__dirname, "source/scss/templates"),
 			// "@template": path.resolve(__dirname, "local/templates/kovry-online"),
 			// "@assets": path.resolve(__dirname, "local/templates/kovry-online/assets"),
 			"@img": path.resolve(__dirname, "source/img"),
