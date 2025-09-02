@@ -1,3 +1,91 @@
 .header {
-	outline: 1px solid red;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px;
+
+	&__top {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+	}
+
+	&__offer {
+		font-size: 18px;
+		font-weight: 600;
+		padding: 16px 24px;
+		min-height: 60px;
+		margin-left: auto;
+	}
+}
+
+.phones {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 16px;
+		font-weight: 600;
+		text-decoration: none;
+		color: var(--dark);
+
+		img {
+			width: 24px;
+			height: 24px;
+			object-fit: contain;
+		}
+	}
+}
+
+.search-title {
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	height: 60px;
+	// outline: 1px solid red;
+	border: 1px solid var(--gray-600);
+	border-radius: 3px;
+	overflow: hidden;
+	padding-right: 60px;
+	background-color: #f5f5f5;
+
+	input {
+		height: 100%;
+		width: 100%;
+		padding: 16px 20px;
+		border: none;
+		outline: none;
+		background-color: transparent;
+		color: var(--dark);
+		font-style: 18px;
+
+		&::placeholder {
+			font-size: 18px;
+			font-weight: 400;
+			color: var(--gray-800);
+		}
+	}
+
+	button {
+		position: absolute;
+		top: 50%;
+		right: 0;
+		transform: translateY(-50%);
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 60px;
+		height: 60px;
+
+		background-color: transparent;
+		border: none;
+		padding: 16px;
+	}
 }

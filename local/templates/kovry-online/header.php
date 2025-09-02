@@ -23,8 +23,11 @@
 				<a href="/" aria-label="kovry-online.ru" class="main-logo main-logo--header">
 					<img src="/images/main-logo.png" width="300" height="120" alt="Логотип">
 				</a>
-				<div class="">
-					search-title
+				<div class="search-title">
+					<input type="text" placeholder="Поиск">
+					<button aria-label="Поиск по сайту">
+						<img src="/images/search-icon.svg" alt="" width="24" height="24">
+					</button>
 				</div>
 				<div class="cart-block">
 					<a href="/cart/">
@@ -32,11 +35,19 @@
 					</a>
 				</div>
 				<div class="phones">
-					phones
+					<a href="#">
+						<img src="/images/phone-icon.svg" alt="" width="40" height="40">
+						<span>8-800-999-99-99</span>
+					</a>
+					<a href="#">
+						<img src="/images/phone-icon.svg" alt="" width="40" height="40">
+						<span>8-800-999-99-99</span>
+					</a>
 				</div>
-				<div class="">
-					button
-				</div>
+
+				<button class="main-btn header__offer">
+					Заказать звонок
+				</button>
 			</div>
 			<div class="header__bottom">
 				<nav>
