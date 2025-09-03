@@ -35,19 +35,16 @@ input[type="number"] {
   }
 
   &__gallery {
-    width: 302px;
-    height: 260px;
-  }
-
-  &__img {
-    object-fit: contain;
-    object-position: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  &__gallery-swiper {
-    height: 100%;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 302px;
+      max-height: 260px;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   &__action {

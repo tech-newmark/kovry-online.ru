@@ -17,12 +17,12 @@ CATALOG_ITEM/CARD/TEMPLATE.PHP
 
 		<div class="item__gallery">
 			<? if ($arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] && empty($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"])): ?>
-				<img class="item__img" src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+				<img  src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
 			<? else: ?>
-				<div class="swiper main-slider item__gallery-swiper">
+				<div class="swiper main-slider item__gallery-slider">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<img class="item__img" src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
+							<img  src="<?= $arResult["ITEM"]["PREVIEW_PICTURE"]["SRC"] ?>" alt="<?= $arResult["ITEM"]["NAME"] ?>" width="300" height="400">
 						</div>
 						<? foreach ($arResult["ITEM"]["PROPERTIES"]["MORE_PHOTO"]["VALUE"] as $picture):
 							$picturePath = CFile::GetPath($picture);
