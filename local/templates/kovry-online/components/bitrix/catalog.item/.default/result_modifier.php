@@ -7,19 +7,19 @@ if (!empty($arResult["ITEM"]["PROPERTIES"]["HIT"]["VALUE"])) {
 
     switch ($label) {
       case 'HIT':
-        $labelTemplate = '<span class="item__label item__label--hit">Хит</span>';
+        $labelTemplate = '<span class="product-label product-label--hit">Хит</span>';
         $labelBlockTemplate .= $labelTemplate;
         break;
       case 'RECOMMEND':
-        $labelTemplate = '<span class="item__label item__label--recommend">Рекомендуем</span>';
+        $labelTemplate = '<span class="product-label product-label--recommend">Рекомендуем</span>';
         $labelBlockTemplate .= $labelTemplate;
         break;
       case 'NEW':
-        $labelTemplate = '<span class="item__label item__label--new">Новинка</span>';
+        $labelTemplate = '<span class="product-label product-label--new">Новинка</span>';
         $labelBlockTemplate .= $labelTemplate;
         break;
       case 'STOCK':
-        $labelTemplate = '<span class="item__label item__label--stock">Акция</span>';
+        $labelTemplate = '<span class="product-label product-label--stock">Акция</span>';
         $labelBlockTemplate .= $labelTemplate;
         break;
 
