@@ -199,6 +199,7 @@ if (!isset($arParams['HIDE_SECTION_DESCRIPTION']) || $arParams['HIDE_SECTION_DES
 			$rowItems = array_splice($arResult['ITEMS'], 0, $rowData['COUNT']);
 		?>
 			<div class="row <?= $rowData['CLASS'] ?>" data-entity="items-row">
+				<? debug($rowData['VARIANT']) ?>
 				<?
 				switch ($rowData['VARIANT']) {
 					case 0:
@@ -280,42 +281,28 @@ if (!isset($arParams['HIDE_SECTION_DESCRIPTION']) || $arParams['HIDE_SECTION_DES
 
 					case 2:
 					?>
-						<div class="col-xs-12 product-item-small-card">
-							<div class="row">
-								<?
-								foreach ($rowItems as $item) {
-								?>
-									<div class="col-sm-4 product-item-big-card">
-										<div class="row">
-											<div class="col-md-12">
-												<?
-												$APPLICATION->IncludeComponent(
-													'bitrix:catalog.item',
-													'',
-													array(
-														'RESULT' => array(
-															'ITEM' => $item,
-															'AREA_ID' => $areaIds[$item['ID']],
-															'TYPE' => $rowData['TYPE'],
-															'BIG_LABEL' => 'N',
-															'BIG_DISCOUNT_PERCENT' => 'N',
-															'BIG_BUTTONS' => 'Y',
-															'SCALABLE' => 'N'
-														),
-														'PARAMS' => $generalParams + $itemParameters[$item['ID']],
-													),
-													$component,
-													array('HIDE_ICONS' => 'Y')
-												);
-												?>
-											</div>
-										</div>
-									</div>
-								<?
-								}
-								?>
-							</div>
-						</div>
+						<? foreach ($rowItems as $item): ?>
+							<?
+							$APPLICATION->IncludeComponent(
+								'bitrix:catalog.item',
+								'',
+								array(
+									'RESULT' => array(
+										'ITEM' => $item,
+										'AREA_ID' => $areaIds[$item['ID']],
+										'TYPE' => $rowData['TYPE'],
+										'BIG_LABEL' => 'N',
+										'BIG_DISCOUNT_PERCENT' => 'N',
+										'BIG_BUTTONS' => 'Y',
+										'SCALABLE' => 'N'
+									),
+									'PARAMS' => $generalParams + $itemParameters[$item['ID']],
+								),
+								$component,
+								array('HIDE_ICONS' => 'Y')
+							);
+							?>
+						<? endforeach; ?>
 					<?
 						break;
 
