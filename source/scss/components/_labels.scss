@@ -1,0 +1,34 @@
+.product-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-label {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: center;
+  padding: 4px 12px;
+  border-radius: 3px;
+
+  &--hit {
+    background-color: var(--danger);
+    color: var(--white);
+  }
+
+  &--recommend {
+    background-color: var(--info);
+    color: var(--dark);
+  }
+
+  &--new {
+    background-color: var(--success);
+    color: var(--white);
+  }
+
+  &--stock {
+    background-color: var(--warning);
+    color: var(--dark);
+  }
+}
