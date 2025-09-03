@@ -5,15 +5,15 @@ $APPLICATION->SetTitle("Техническая страница для разр�
 
 <h1>Техническая страница yовый тест</h1>
 <? $APPLICATION->IncludeComponent(
-	"bitrix:catalog",
-	".default",
+	"bitrix:catalog", 
+	".default", 
 	[
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_PICT_PROP" => "-",
 		"ADD_PROPERTIES_TO_BASKET" => "Y",
 		"ADD_SECTIONS_CHAIN" => "Y",
-		"AJAX_MODE" => "Y",
+		"AJAX_MODE" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
 		"AJAX_OPTION_HISTORY" => "N",
 		"AJAX_OPTION_JUMP" => "N",
@@ -44,8 +44,10 @@ $APPLICATION->SetTitle("Техническая страница для разр�
 		"DETAIL_DISPLAY_NAME" => "Y",
 		"DETAIL_DISPLAY_PREVIEW_TEXT_MODE" => "E",
 		"DETAIL_IMAGE_RESOLUTION" => "16by9",
-		"DETAIL_MAIN_BLOCK_OFFERS_PROPERTY_CODE" => [],
-		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => [],
+		"DETAIL_MAIN_BLOCK_OFFERS_PROPERTY_CODE" => [
+		],
+		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => [
+		],
 		"DETAIL_META_DESCRIPTION" => "-",
 		"DETAIL_META_KEYWORDS" => "-",
 		"DETAIL_OFFERS_FIELD_CODE" => [
@@ -93,7 +95,8 @@ $APPLICATION->SetTitle("Техническая страница для разр�
 		"IBLOCK_TYPE" => "1c_catalog",
 		"INCLUDE_SUBSECTIONS" => "Y",
 		"INSTANT_RELOAD" => "Y",
-		"LABEL_PROP" => [],
+		"LABEL_PROP" => [
+		],
 		"LAZY_LOAD" => "N",
 		"LINE_ELEMENT_COUNT" => "3",
 		"LINK_ELEMENTS_URL" => "link.php?PARENT_ELEMENT_ID=#ELEMENT_ID#",
@@ -110,7 +113,8 @@ $APPLICATION->SetTitle("Техническая страница для разр�
 		],
 		"LIST_PRODUCT_BLOCKS_ORDER" => "price,props,sku,quantityLimit,quantity,buttons",
 		"LIST_PRODUCT_ROW_VARIANTS" => "[{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false},{'VARIANT':'2','BIG_DATA':false}]",
-		"LIST_PROPERTY_CODE_MOBILE" => [],
+		"LIST_PROPERTY_CODE_MOBILE" => [
+		],
 		"LIST_SHOW_SLIDER" => "Y",
 		"LIST_SLIDER_INTERVAL" => "3000",
 		"LIST_SLIDER_PROGRESS" => "N",
