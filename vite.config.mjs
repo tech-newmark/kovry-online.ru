@@ -11,6 +11,10 @@ export default defineConfig({
 					"local/templates/kovry-online/components/bitrix/catalog.item/.default/style.scss",
 				featuresList:
 					"local/templates/kovry-online/components/bitrix/news.list/features/style.scss",
+				companyPreview:
+					"local/templates/kovry-online/components/bitrix/news.list/company-preview/style.scss",
+				basket:
+					"local/templates/kovry-online/components/bitrix/sale.basket.basket/basket/style.scss",
 				// Добавьте другие компоненты при необходимости
 
 				script: "source/js/main.js",
@@ -38,6 +42,14 @@ export default defineConfig({
 						if (fileName.includes("featuresList")) {
 							return "local/templates/kovry-online/components/bitrix/news.list/features/style.css";
 						}
+						if (fileName.includes("companyPreview")) {
+							return "local/templates/kovry-online/components/bitrix/news.list/company-preview/style.css";
+						}
+
+						if (fileName.includes("basket")) {
+							return "local/templates/kovry-online/components/bitrix/sale.basket.basket/basket/style.css";
+						}
+
 						return "local/templates/kovry-online/template_styles.css";
 					}
 

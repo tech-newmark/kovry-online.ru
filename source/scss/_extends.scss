@@ -22,3 +22,7 @@
 	padding: 0;
 	list-style: none;
 }
+
+%section-inner-offset {
+	padding: clamp(24px, 3.2vw, 70px) 0;
+}

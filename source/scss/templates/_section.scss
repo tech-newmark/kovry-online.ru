@@ -1,0 +1,5 @@
+@use "@scss-root/extends";
+
+.section {
+	@extend %section-inner-offset;
+}
