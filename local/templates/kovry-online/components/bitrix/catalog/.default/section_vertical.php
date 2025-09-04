@@ -91,7 +91,7 @@ if (ModuleManager::isModuleInstalled("sale")) {
 
 	if (!empty($arRecomData) && $arParams['USE_GIFTS_SECTION'] === 'Y') {
 ?>
-		<div data-entity="parent-container">
+		<div data-entity="parent-container test">
 			<?
 			if (!isset($arParams['GIFTS_SECTION_LIST_HIDE_BLOCK_TITLE']) || $arParams['GIFTS_SECTION_LIST_HIDE_BLOCK_TITLE'] !== 'Y') {
 			?>
