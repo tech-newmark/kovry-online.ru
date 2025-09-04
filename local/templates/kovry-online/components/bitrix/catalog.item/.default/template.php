@@ -18,9 +18,7 @@ use Bitrix\Main;
  */
 
 $this->setFrameMode(true);
-?>
-CATALOG_ITEM/DEFAULT
-<?
+
 
 if (isset($arResult['ITEM'])) {
 	$item = $arResult['ITEM'];
