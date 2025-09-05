@@ -25,6 +25,7 @@ CATALOG_ITEM/LINE/TEMPLATE.PHP
 							</div>
 						<? endforeach; ?>
 					</div>
+					<div class="swiper-pagination"></div>
 				</div>
 			<? endif; ?>
 		</div>

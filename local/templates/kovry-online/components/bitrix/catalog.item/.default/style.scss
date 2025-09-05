@@ -98,6 +98,10 @@ input[type="number"] {
   &__gallery {
     padding-bottom: 10px;
 
+    &:has(.swiper) {
+      padding-bottom: 0;
+    }
+
     @include container-up("item-container", $card-width-tablet) {
       margin-bottom: $gap-xs;
     }
@@ -439,6 +443,36 @@ input[type="number"] {
     @include container-up("item-container", $card-width-desktop) {
       width: 60%;
       min-height: auto;
+    }
+  }
+
+  .swiper {
+    padding-bottom: 10px;
+
+    .swiper-pagination {
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    width: 40px;
+    height: 2px;
+    background-color: var(--gray-600);
+    border-radius: 2px;
+
+    @include container-up("item-container", $card-width-tablet) {
+      width: 15px;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
+      width: 40px;
+    }
+
+    &-active {
+      background-color: var(--primary);
     }
   }
 }
