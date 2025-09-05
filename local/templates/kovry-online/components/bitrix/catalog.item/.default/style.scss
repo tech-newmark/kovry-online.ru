@@ -1,11 +1,37 @@
 @use "@scss-root/extends";
+@use "@scss-root/vars";
+@use "@scss-root/scoped-vars";
+@use "@scss-root/container-queries" as *;
 
-$inner-offset-card--item: 20px;
-$inner-offset-card--line: 40px;
+$card-width-tablet: 708px;
+$card-width-desktop: 1210px;
+
+$gallery-width-tablet: 150px;
+$gallery-width-desktop: 302px;
+
+$content-min-width-tablet: 238px;
+$content-min-width-desktop: 446px;
+
+$purchase-block-width-tablet: 200px;
+$purchase-block-width-desktop: 302px;
+
+$quantity-block-height: 60px;
+
+$inner-offset-card-sm: 20px;
+$inner-offset-card-lg: 40px;
+
 $gap-xs: 10px;
 $gap-sm: 20px;
 $gap-md: 30px;
 $gap-lg: 40px;
+
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 20px;
+
+$line-height-sm: 20px;
+$line-height-md: 24px;
+$line-height-lg: 30px;
 
 input[type="number"] {
   appearance: none;
@@ -18,23 +44,68 @@ input[type="number"] {
   }
 }
 
+.product-item-container {
+  width: 100%;
+  max-width: 100vw;
+
+  container: item-container / inline-size;
+}
+
 .item {
-  border: 1px solid var(--gray-600);
-  font-size: 16px;
-  line-height: 24px;
+  position: relative;
   display: flex;
+  flex-direction: column;
+  gap: $gap-sm;
+  padding: $inner-offset-card-sm 0;
+  font-size: $font-size-md;
+  line-height: $line-height-md;
+  border: 1px solid var(--gray-600);
+
+  @include container-up("item-container", $card-width-tablet) {
+    display: grid;
+    grid-template-columns:
+      $gallery-width-tablet minmax($content-min-width-tablet, 1fr)
+      $purchase-block-width-tablet;
+    column-gap: $gap-lg;
+    row-gap: $gap-sm;
+    padding: $inner-offset-card-sm;
+  }
+
+  @include container-up("item-container", $card-width-desktop) {
+    grid-template-columns:
+      $gallery-width-desktop minmax($content-min-width-desktop, 1fr)
+      $purchase-block-width-desktop;
+    padding: $inner-offset-card-lg;
+  }
+
+  &__button {
+    @extend %hover-opacity;
+  }
+
+  // Блок галереи с кнопками быстрых действий
 
   &__gallery-wrapper {
     position: relative;
+
+    @include container-up("item-container", $card-width-tablet) {
+      grid-column: 1/2;
+      grid-row: 1/5;
+    }
   }
 
-  &__product-labels {
-    position: absolute;
-    z-index: 2;
-    max-width: 125px;
-  }
+  // -- Галерея
 
   &__gallery {
+    padding-bottom: 10px;
+
+    &:has(.swiper) {
+      padding-bottom: 0;
+    }
+
+    @include container-up("item-container", $card-width-tablet) {
+      margin-bottom: $gap-xs;
+    }
+
     img {
       display: block;
       width: 100%;
@@ -44,67 +115,147 @@ input[type="number"] {
       margin: 0 auto;
       object-fit: contain;
       object-position: center;
+
+      @include container-up("item-container", $card-width-tablet) {
+        max-width: 150px;
+        max-height: 120px;
+      }
+
+      @include container-up("item-container", $card-width-desktop) {
+        max-width: 302px;
+        max-height: 260px;
+      }
     }
   }
 
+  // -- Кнопки быстрых действий
+
   &__action {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: $inner-offset-card-sm;
     display: flex;
     flex-direction: column;
     gap: $gap-xs;
+
+    @include container-up("item-container", $card-width-tablet) {
+      position: static;
+    }
   }
 
   &__action-btn {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
     background-color: var(--white);
     border: 1px solid var(--gray-600);
     border-radius: 3px;
 
-    &-text {
+    @include container-up("item-container", $card-width-tablet) {
+      display: block;
+      width: 100%;
+      height: auto;
+      padding: 2px;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      font-size: 16px;
-      line-height: 24px;
-
-      &::before {
-        content: "";
-        min-width: 24px;
-        width: 24px;
-        height: 24px;
-        background-repeat: no-repeat;
-      }
-
-      &--quickview::before {
-        background-image: url("@img/quickview.svg");
-      }
-
-      &--oneclickbuy::before {
-        background-image: url("@img/cart.svg");
-      }
-    }
-
-    &--with-text {
-      padding: 8px 15px;
-    }
-
-    &--no-text {
-      width: 40px;
-      aspect-ratio: 1;
+      gap: $gap-xs;
+      padding: 8px;
     }
   }
 
+  &__action-btn-icon {
+    @include container-up("item-container", $card-width-tablet) {
+      display: none; // вопрос
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
+      display: block;
+    }
+  }
+
+  &__action-btn-text {
+    display: none;
+
+    @include container-up("item-container", $card-width-tablet) {
+      display: inline-block;
+      font-size: $font-size-sm;
+      line-height: $line-height-sm;
+    }
+  }
+
+  // Лейблы
+
+  &__product-labels {
+    position: absolute;
+    top: $inner-offset-card-sm;
+    left: $inner-offset-card-sm;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    gap: $gap-xs;
+
+    max-width: 125px;
+
+    @include container-up("item-container", $card-width-tablet) {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      max-width: none;
+      grid-column: 2/3;
+      grid-row: 3/4;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
+      position: absolute;
+      top: $inner-offset-card-lg;
+      left: $inner-offset-card-lg;
+
+      flex-direction: column;
+
+      grid-column: auto;
+      grid-row: auto;
+
+      max-width: 125px;
+    }
+  }
+
+  // Заголовок
+
   &__title {
-    font-weight: 400;
+    padding: 0 $inner-offset-card-sm;
+    font-weight: var(--site-base-font-weight);
     color: var(--dark);
 
+    @extend %hover-opacity;
+
     &:hover,
-    &:focus {
-      opacity: 0.6;
+    &:focus,
+    &:active {
+      color: var(--dark);
       text-decoration: none;
     }
 
-    &:active {
-      opacity: 0.4;
+    @include container-up("item-container", $card-width-tablet) {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      padding: 0;
+      font-size: $font-size-lg;
+      line-height: $line-height-lg;
+    }
+  }
+
+  // Торговые предложения
+
+  &__sku {
+    @include container-up("item-container", $card-width-tablet) {
+      grid-column: 2/3;
+      grid-row: 2/3;
     }
   }
 
@@ -112,6 +263,7 @@ input[type="number"] {
     display: flex;
     flex-wrap: wrap;
     gap: $gap-xs;
+
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -132,57 +284,130 @@ input[type="number"] {
     }
   }
 
-  &__price {
+  // Блок с ценами и количеством товара
+
+  &__purchase {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-sm;
+    margin-top: auto;
+
+    @include container-up("item-container", $card-width-tablet) {
+      grid-column: 3/4;
+      grid-row: 1/5;
+      margin-top: 0;
+    }
+  }
+
+  // -- Цены
+
+  &__price-block {
     display: flex;
     flex-direction: column;
     gap: $gap-xs;
+    padding: 0 $inner-offset-card-sm;
 
-    &-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      padding: 2px;
+    @include container-up("item-container", $card-width-tablet) {
+      padding: 0;
+    }
+  }
+
+  &__price-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    padding: 2px;
+    padding-left: 8px;
+    background-color: var(--warning);
+    border-radius: 4px;
+
+    @include container-up("item-container", $card-width-tablet) {
+      padding-left: 4px;
+      font-size: $font-size-sm;
+      line-height: $line-height-sm;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
       padding-left: 8px;
-      background-color: var(--warning);
-      border-radius: 4px;
+      font-size: $font-size-md;
+      line-height: $line-height-md;
+    }
 
-      span:last-child {
-        background-color: var(--info);
+    span:last-child {
+      padding: 2px 8px;
+      background-color: var(--info);
+      border-radius: 2px;
+
+      @include container-up("item-container", $card-width-tablet) {
+        padding: 2px 4px;
+      }
+
+      @include container-up("item-container", $card-width-desktop) {
         padding: 2px 8px;
-        border-radius: 2px;
+        font-size: $font-size-md;
       }
     }
+  }
 
-    &-value--current {
-      font-size: 20px;
-      font-weight: 600;
+  &__price-value--current {
+    font-size: $font-size-lg;
+    line-height: $line-height-lg;
+    font-weight: 600;
+
+    @include container-up("item-container", $card-width-tablet) {
+      font-size: $font-size-md;
+      line-height: $line-height-md;
     }
 
-    &-value--old {
-      color: var(--gray-800);
-      text-decoration: line-through;
+    @include container-up("item-container", $card-width-desktop) {
+      font-size: $font-size-lg;
+      line-height: $line-height-lg;
     }
   }
 
+  &__price-value--old {
+    color: var(--gray-800);
+    text-decoration: line-through;
+
+    @include container-up("item-container", $card-width-tablet) {
+      font-size: $font-size-sm;
+      line-height: $line-height-sm;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
+      font-size: $font-size-md;
+      line-height: $line-height-md;
+    }
+  }
+
+  // -- Кнопки изменения количества товара и "В корзину"
   &__quantity-block {
     display: flex;
+
+    @include container-up("item-container", $card-width-tablet) {
+      flex-direction: column;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
+      flex-direction: row;
+    }
   }
+
+  // ---- Кнопки изменения количества товара
 
   &__counter {
     display: flex;
+    width: 40%;
     background-color: var(--gray-500);
-  }
 
-  &__quantity-field {
-    flex-grow: 1;
-    width: 32px;
-    height: 60px;
-    padding: 5px;
-    text-align: center;
-    background-color: transparent;
-    border: 1px solid transparent;
-    pointer-events: none;
+    @include container-up("item-container", $card-width-tablet) {
+      width: 100%;
+    }
+
+    @include container-up("item-container", $card-width-desktop) {
+      width: 40%;
+    }
   }
 
   &__quantity-btn {
@@ -191,126 +416,63 @@ input[type="number"] {
     color: var(--gray-800);
     background-color: transparent;
     border: 1px solid transparent;
-
-    &:hover {
-      opacity: 0.6;
-    }
-
-    &:active {
-      opacity: 0.4;
-    }
   }
 
-  &__add-to-cart-btn {
+  &__quantity-field {
+    width: 100%;
+    min-height: $quantity-block-height;
+    padding: 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    pointer-events: none;
+  }
+
+  // ---- "В корзину"
+
+  .item__add-to-cart-btn {
+    width: 60%;
+    min-height: $quantity-block-height;
     padding: 10px;
     text-transform: uppercase;
-  }
 
-  &--card {
-    flex-direction: column;
-    gap: $gap-sm;
-    min-width: 302px;
-    padding: $inner-offset-card--item 0;
-
-    .item__content {
-      &--info {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        padding: 0 $inner-offset-card--item;
-      }
-
-      &--actions {
-        display: flex;
-        flex-direction: column;
-        gap: $gap-sm;
-      }
+    @include container-up("item-container", $card-width-tablet) {
+      width: 100%;
     }
 
-    .item__product-labels {
-      top: 0;
-      left: $inner-offset-card--item;
-    }
-
-    .item__gallery {
-      margin: 0 auto;
-    }
-
-    .item__action {
-      position: absolute;
-      top: 0;
-      right: $inner-offset-card--item;
-      z-index: 2;
-    }
-
-    .item__price {
-      margin-top: auto;
-    }
-
-    .item__counter {
-      width: 40%;
-    }
-
-    .item__quantity-btn {
-      min-width: 42px;
-    }
-
-    .item__add-to-cart-btn {
+    @include container-up("item-container", $card-width-desktop) {
       width: 60%;
-    }
-
-    .item__sku-list {
-      padding: 0 $inner-offset-card--item;
+      min-height: auto;
     }
   }
 
-  &--line {
-    gap: $gap-lg;
-    min-width: 1210px;
-    padding: $inner-offset-card--line;
+  .swiper {
+    padding-bottom: 10px;
 
-    .item__gallery-wrapper {
-      width: 302px;
+    .swiper-pagination {
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .swiper-pagination-bullet {
+    width: 40px;
+    height: 2px;
+    background-color: var(--gray-600);
+    border-radius: 2px;
+
+    @include container-up("item-container", $card-width-tablet) {
+      width: 15px;
     }
 
-    .item__content {
-      &--info {
-        min-width: 446px;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        gap: $gap-sm;
-      }
-
-      &--actions {
-        width: 302px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
+    @include container-up("item-container", $card-width-desktop) {
+      width: 40px;
     }
 
-    .item__product-labels {
-      top: 0;
-      left: 0;
-    }
-
-    .item__gallery {
-      margin-bottom: 10px;
-    }
-
-    .item__title {
-      font-size: 20px;
-      line-height: 30px;
-    }
-
-    .item__counter {
-      width: 120px;
-    }
-
-    .item__add-to-cart-btn {
-      width: 182px;
+    &-active {
+      background-color: var(--primary);
     }
   }
 }
