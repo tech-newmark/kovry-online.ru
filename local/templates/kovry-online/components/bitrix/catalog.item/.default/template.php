@@ -111,7 +111,8 @@ if (isset($arResult['ITEM'])) {
 		<?php
 		$documentRoot = Main\Application::getDocumentRoot();
 		// $templatePath = mb_strtolower($arResult['TYPE']) . '/template.php';
-		$templatePath = 'line/template.php';
+		// $templatePath = 'line/template.php';
+		$templatePath = 'custom/template.php';
 		$file = new Main\IO\File($documentRoot . $templateFolder . '/' . $templatePath);
 		if ($file->isExists()) {
 			include($file->getPath());
